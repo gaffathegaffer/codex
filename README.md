@@ -91,6 +91,9 @@ If you'd rather not export your credentials every time, copy `.codex.env.example
 cp .codex.env.example ~/.codex.env
 ```
 
+Make sure you do **not** commit `~/.codex.env` to version control. Add the file
+to your project's `.gitignore` if necessary.
+
 Codex loads variables from this file on startup, so you can store your `OPENAI_API_KEY` and any additional environment settings there.
 
 ### OpenAI Plus/Pro Users
