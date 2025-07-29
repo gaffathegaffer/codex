@@ -4,23 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Produktkort</title>
-  <!-- Tailwind CSS via CDN -->
+  <!-- Import Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
-  <div id="product-card" class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105">
-    <img src="https://via.placeholder.com/400x300" alt="Produktbild" class="w-full h-48 object-cover">
+  <!-- Produktkort start -->
+  <article id="product-card" class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105">
+    <figure>
+      <img src="https://via.placeholder.com/400x300" alt="Produktbild" class="w-full h-48 object-cover">
+    </figure>
     <div class="p-4">
-      <h2 class="text-xl font-semibold mb-2" id="product-name">Exempelprodukt</h2>
-      <p class="text-lg text-gray-700 mb-4" id="product-price">199 kr</p>
+      <h2 id="product-name" class="text-xl font-semibold mb-2">Exempelprodukt</h2>
+      <p id="product-price" class="text-lg text-gray-700 mb-4">199 kr</p>
+      <!-- Knapp som lägger till produkten i varukorgen -->
       <button id="add-to-cart" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Lägg i varukorg
       </button>
     </div>
-  </div>
-
+  </article>
+  <!-- Produktkort slut -->
   <script>
-    // Enkel klick-hanterare för knappen
+    // Lyssna på knappens klickhändelse och logga ett meddelande
     document.getElementById('add-to-cart').addEventListener('click', function() {
       const name = document.getElementById('product-name').textContent;
       console.log(`Produkt '${name}' har lagts till i varukorgen.`);
