@@ -85,6 +85,14 @@ export OPENAI_API_KEY="your-api-key-here"
 > [!NOTE]
 > This command sets the key only for your current terminal session. You can add the `export` line to your shell's configuration file (e.g., `~/.zshrc`), but we recommend setting it for the session.
 
+If you'd rather not export your credentials every time, copy `.codex.env.example` to `~/.codex.env` and fill in your own values:
+
+```bash
+cp .codex.env.example ~/.codex.env
+```
+
+Codex loads variables from this file on startup, so you can store your `OPENAI_API_KEY` and any additional environment settings there.
+
 ### OpenAI Plus/Pro Users
 
 If you have a paid OpenAI account, run the following to start the login process:
