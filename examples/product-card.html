@@ -2,32 +2,36 @@
 <html lang="sv">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Produktkort</title>
   <!-- Import Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
   <!-- Produktkort start -->
-  <article id="product-card" class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105">
-    <figure>
-      <img src="https://via.placeholder.com/400x300" alt="Produktbild" class="w-full h-48 object-cover">
+  <article id="product-card" class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105">
+    <figure class="w-full">
+      <!-- Platshållarbild för produkten -->
+      <img src="https://via.placeholder.com/400x300" alt="Exempelprodukt" class="w-full h-48 object-cover" />
     </figure>
-    <div class="p-4">
-      <h2 id="product-name" class="text-xl font-semibold mb-2">Exempelprodukt</h2>
-      <p id="product-price" class="text-lg text-gray-700 mb-4">199 kr</p>
+    <div class="p-4 space-y-4">
+      <h2 id="product-name" class="text-xl font-semibold">Exempelprodukt</h2>
+      <p id="product-price" class="text-lg text-gray-700">199 kr</p>
       <!-- Knapp som lägger till produkten i varukorgen -->
-      <button id="add-to-cart" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      <button id="add-to-cart" type="button" aria-label="Lägg produkten i varukorgen" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Lägg i varukorg
       </button>
     </div>
   </article>
   <!-- Produktkort slut -->
   <script>
-    // Lyssna på knappens klickhändelse och logga ett meddelande
-    document.getElementById('add-to-cart').addEventListener('click', function() {
-      const name = document.getElementById('product-name').textContent;
-      console.log(`Produkt '${name}' har lagts till i varukorgen.`);
+    // Vänta tills DOM:en är redo innan händelselyssnaren registreras
+    window.addEventListener('DOMContentLoaded', () => {
+      const button = document.getElementById('add-to-cart');
+      button.addEventListener('click', () => {
+        const name = document.getElementById('product-name').textContent;
+        console.log(`Produkt '${name}' har lagts till i varukorgen.`);
+      });
     });
   </script>
 </body>
