@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import importlib.util
 import shutil
 import subprocess
 from pathlib import Path
@@ -12,20 +13,22 @@ def _find_ffmpeg() -> str:
     if ffmpeg:
         return ffmpeg
 
-    # Fallback: imageio-ffmpeg (kan ge en ffmpeg-binär via Python)
-    try:
+    # Fallback: imageio-ffmpeg (kan ge en ffmpeg-binär via Python).
+    # Kontrollera först att paketet finns så importen inte behöver ligga i ett
+    # generellt try/except-block.
+    if importlib.util.find_spec("imageio_ffmpeg") is not None:
         import imageio_ffmpeg  # type: ignore
 
         return imageio_ffmpeg.get_ffmpeg_exe()
-    except Exception as exc:
-        raise RuntimeError(
-            "Hittade ingen ffmpeg.\n\n"
-            "Lösning A (rekommenderad): installera ffmpeg och lägg i PATH.\n"
-            "  - Linux: sudo apt install ffmpeg\n"
-            "  - macOS: brew install ffmpeg\n"
-            "  - Windows: installera ffmpeg och lägg till i PATH\n\n"
-            "Lösning B: pip install imageio-ffmpeg\n"
-        ) from exc
+
+    raise RuntimeError(
+        "Hittade ingen ffmpeg.\n\n"
+        "Lösning A (rekommenderad): installera ffmpeg och lägg i PATH.\n"
+        "  - Linux: sudo apt install ffmpeg\n"
+        "  - macOS: brew install ffmpeg\n"
+        "  - Windows: installera ffmpeg och lägg till i PATH\n\n"
+        "Lösning B: pip install imageio-ffmpeg\n"
+    )
 
 
 def audio_bild_till_mp4(
